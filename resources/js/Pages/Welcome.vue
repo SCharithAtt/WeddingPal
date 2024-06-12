@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import VendorCard from '@/Components/VendorCard.vue';
+import HomepageCover from "@/Components/HomepageCover.vue";
 
 defineProps({
     canLogin: {
@@ -24,6 +26,8 @@ function handleImageError() {
     document.getElementById('docs-card-content')?.classList.add('!flex-row');
     document.getElementById('background')?.classList.add('!hidden');
 }
+
+
 </script>
 
 <template>
@@ -83,8 +87,9 @@ function handleImageError() {
                     </g>
                 </svg>
             </div>
+
             <!-- Buttons -->
-            <div class="buttons">
+            <div class="buttons flex flex-col space-y-4">
                 <button class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
                     <Link
                         :href="route('login')"
@@ -103,32 +108,45 @@ function handleImageError() {
                     </Link>
                 </button>
             </div>
+
+
         </div>
 
-        <!-- Navigation bar -->
-        <div class="navigation-bar bg-gray-800">
+        <div class="navigation-bar bg-gray-800 p-2 rounded-md">
             <ul class="flex items-center justify-center space-x-4">
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Find Vendors</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Wedding Inspiration</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Destination Weddings</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Why WeddingPal?</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Become a Vendor</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">Start Planning Your Wedding</a></li>
-                <li><a href="#" class="py-2 px-4 text-white hover:bg-gray-700">About Us</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Find Vendors</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Wedding Inspiration</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Destination Weddings</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Why WeddingPal?</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Become a Vendor</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Start Planning Your Wedding</a></li>
+                <li><a href="#" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">About Us</a></li>
             </ul>
         </div>
+ <!-- Your content goes here -->
 
-        <!-- Your content goes here -->
+        <div class="flex flex-col h-screen bg-amber-100" >
+
+            <div class=" flex-grow  inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center">
+                <h1 class="text-5xl font-bold">WeddingPal</h1>
+                <p class="mt-4 text-2xl">Your Dream Wedding Starts Here</p>
+                <a href="#" class="mt-8 bg-white text-black px-4 py-2 text-lg rounded-full">
+                    Get Started
+                </a>
+            </div>
+
+
+
+
+        </div>
+
     </div>
 </template>
 
 <script>
 export default {
-    name: 'PageWithHeaderAndNavigation'
+    name: 'PageWithHeaderAndNavigation',
+
 }
+
 </script>
-
-<style scoped>
-
-
-</style>

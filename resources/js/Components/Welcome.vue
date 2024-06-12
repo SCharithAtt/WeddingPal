@@ -1,5 +1,10 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { Inertia } from '@inertiajs/inertia';
+
+function goToEditVendorProfile() {
+    Inertia.visit(route('editVendorProfile'));
+}
 </script>
 
 <template>
@@ -29,12 +34,19 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     <div class="flex items-center">
 
                         <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                            <a>Example</a>
+                            <a>Profile Info</a>
                         </h2>
                     </div>
 
                     <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                        Example
+                        Vendor Name: {{VendorName}}
+                        <br>
+                        Contact Number: {{contactNumber}}
+                        <br>
+                        Location: {{address}}
+                        <br>
+                        Description: {{bio}}
+                        <br>
                     </p>
 
 
@@ -46,14 +58,14 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 <div class="flex items-center">
 
                     <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                        <a>Example</a>
+                        <a>Set Up Profile Info</a>
                     </h2>
                 </div>
 
-                <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                     Example
-                </p>
+                    <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                        <a @click.prevent="goToEditVendorProfile" class="text-blue-500 hover:text-blue-700 font-semibold underline">Click here to change vendor profile information.</a>
 
+                    </p>
 
             </div>
         </div>

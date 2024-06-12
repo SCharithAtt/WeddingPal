@@ -46,6 +46,14 @@ class User extends Authenticatable //implements MustVerifyEmail
      *
      * @var array<int, string>
      */
+    // User.php
+
+    public function vendorProfile()
+    {
+        return $this->hasOne(VendorProfile::class, 'id', 'id');
+    }
+
+
     protected $appends = [
         'profile_photo_url',
     ];

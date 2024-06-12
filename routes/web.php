@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\VendorProfileController;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -22,3 +24,11 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+
+Route::get('/edit-vendor-profile', [VendorProfileController::class, 'edit'])->name('editVendorProfile');
+
