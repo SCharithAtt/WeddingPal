@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Auth\VendorRegisterController;
 use App\Http\Controllers\Auth\ClientRegisterController;
 use App\Http\Middleware\RoleGuard;
+use App\Http\Controllers\VendorController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -42,3 +43,6 @@ Route::get('/vendor/dashboard', function () {
 Route::get('/client/dashboard', function () {
     return Inertia::render('Dashboard/ClientDashboard');
 })->middleware(['auth', RoleGuard::class . ':Client'])->name('client.dashboard');
+
+//Resource routes for VendorController
+Route::resource('vendor', VendorController::class)->middleware(['auth', RoleGuard::class . ':Vendor']);

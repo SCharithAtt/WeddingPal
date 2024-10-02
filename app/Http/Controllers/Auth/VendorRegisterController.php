@@ -22,7 +22,7 @@ class VendorRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'company_name' => 'required|string|max:255',
+
         ]);
 
         $user = User::create([
@@ -31,18 +31,12 @@ class VendorRegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-
         $user->assignRole('Vendor');
 
-        // Authenticate the user under the client guard
+        // Authenticate the user under the vendor guard
         auth()->guard('vendor')->login($user);
 
-        Vendor::create([
-            'user_id' => $user->id,
-            'company_name' => $request->company_name,
-        ]);
-
-        //login user
+        // Login user
         auth()->login($user);
 
         return redirect()->route('vendor.dashboard');

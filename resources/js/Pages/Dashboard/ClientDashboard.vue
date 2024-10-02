@@ -1,5 +1,11 @@
 <script setup>
+import ClientLayout from "@/Layouts/ClientLayout.vue";
 
+defineOptions(
+    {
+        layout: ClientLayout,
+    }
+);
 </script>
 
 <template>
@@ -7,7 +13,3 @@
         <h1>Client Dashboard</h1>
     </div>
 </template>
-
-<style scoped>
-
-</style>
