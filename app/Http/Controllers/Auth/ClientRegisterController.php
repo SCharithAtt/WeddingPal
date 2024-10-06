@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 
 class ClientRegisterController extends Controller
 {
@@ -42,6 +43,6 @@ class ClientRegisterController extends Controller
         //login user
         auth()->login($user);
 
-        return redirect()->route('client.dashboard');
+        return Inertia::location(route('dashboard'));
     }
 }

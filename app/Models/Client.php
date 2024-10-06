@@ -10,7 +10,11 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = [
-        // Add fillable fields
+        'name',
+        'email',
+        'phone',
+        'address',
+        'user_id',
     ];
 
     public function user()

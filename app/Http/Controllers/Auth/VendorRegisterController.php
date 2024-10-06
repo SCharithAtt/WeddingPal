@@ -39,6 +39,6 @@ class VendorRegisterController extends Controller
         // Login user
         auth()->login($user);
 
-        return redirect()->route('vendor.dashboard');
+        return Inertia::location(route('dashboard'));
     }
 }

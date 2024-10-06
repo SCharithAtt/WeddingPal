@@ -1,16 +1,15 @@
 <script setup>
 import VendorLayout from "@/Layouts/VendorLayout.vue";
-import SetupStoreBanner from "@/Components/SetupStoreBanner.vue";
+import VendorStoreInfo from "@/Pages/Vendor/Store/VendorStoreInfo.vue";
 
 defineOptions({
-    layout: VendorLayout,
-});
-
-
+        layout: VendorLayout,
+    });
 </script>
 
 <template>
-{{$page.props}}
+<h1> Welcome to your Vendor Dashboard </h1>
 
+    <VendorStoreInfo/>
 </template>
 

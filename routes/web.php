@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\VendorRegisterController;
 use App\Http\Controllers\Auth\ClientRegisterController;
 use App\Http\Middleware\RoleGuard;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -36,13 +37,16 @@ Route::post('/register/client', [ClientRegisterController::class, 'register']);
 
 
 
-Route::get('/vendor/dashboard', function () {
-    return Inertia::render('Dashboard/VendorDashboard');
-})->middleware(['auth', RoleGuard::class . ':Vendor'])->name('vendor.dashboard');
+//Route::get('/vendor/dashboard', function () {
+//    return Inertia::render('Dashboard/VendorDashboard');
+//})->middleware(['auth', RoleGuard::class . ':Vendor'])->name('vendor.dashboard');
+//
+//Route::get('/client/dashboard', function () {
+//    return Inertia::render('Dashboard/ClientDashboard');
+//})->middleware(['auth', RoleGuard::class . ':Client'])->name('client.dashboard');
 
-Route::get('/client/dashboard', function () {
-    return Inertia::render('Dashboard/ClientDashboard');
-})->middleware(['auth', RoleGuard::class . ':Client'])->name('client.dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', RoleGuard::class . ':Vendor|Client|Admin'])->name('dashboard');
 
 //Resource routes for VendorController
 Route::resource('vendor', VendorController::class)->middleware(['auth', RoleGuard::class . ':Vendor']);
