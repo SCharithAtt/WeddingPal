@@ -36,15 +36,15 @@ const cards = [
         </div>
 
         <!-- Include previous component below the strip -->
-        <DashboardSummaryCard :cards="SelectedVendors" />
+<!--        <DashboardSummaryCard :cards="SelectedVendors" />-->
     </div>
 </template>
 
 <style scoped>
 .tile {
-    flex: 1; /* Allow tiles to grow and fill the space evenly */
-    min-width: 150px; /* Minimum width for each tile */
-    height: 100px; /* Fixed height for the tiles */
+    flex: 1;
+    min-width: 150px;
+    height: 100px;
     transition: transform 0.3s;
 }
 .tile:hover {

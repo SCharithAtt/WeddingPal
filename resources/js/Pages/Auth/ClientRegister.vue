@@ -1,15 +1,49 @@
 <template>
-    <div>
-        <h1>Client Registration</h1>
-        <form @submit.prevent="submit">
-            <input v-model="form.name" placeholder="Name" required />
-            <input v-model="form.email" type="email" placeholder="Email" required />
-            <input v-model="form.password" type="password" placeholder="Password" required />
-            <input v-model="form.password_confirmation" type="password" placeholder="Confirm Password" required />
-            <button type="submit">Register</button>
+    <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Client Registration</h1>
+        <form @submit.prevent="submit" class="space-y-4">
+            <input
+                v-model="form.name"
+                placeholder="Name"
+                required
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+                v-model="form.email"
+                type="email"
+                placeholder="Email"
+                required
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+                v-model="form.password"
+                type="password"
+                placeholder="Password"
+                required
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+                v-model="form.password_confirmation"
+                type="password"
+                placeholder="Confirm Password"
+                required
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+                type="submit"
+                class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+            >
+                Register
+            </button>
         </form>
-        <div v-if="form.errors" class="errors">
-            <p v-for="(error, field) in form.errors" :key="field">{{ error }}</p>
+        <div v-if="form.errors" class="mt-4">
+            <p
+                v-for="(error, field) in form.errors"
+                :key="field"
+                class="text-red-600"
+            >
+                {{ error }}
+            </p>
         </div>
     </div>
 </template>
@@ -38,9 +72,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.errors {
-    color: red;
-}
-</style>

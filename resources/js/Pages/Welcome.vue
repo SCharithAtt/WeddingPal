@@ -1,7 +1,20 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import {ref, defineProps} from 'vue';
+import {Head, Link} from '@inertiajs/vue3';
 import VendorCard from '@/Components/VendorCard.vue';
 import HomepageCover from "@/Components/HomepageCover.vue";
+import FindVendors from "@/Components/HomePageTabs/FindVendors.vue";
+import WeddingInspo from "@/Components/HomePageTabs/WeddingInspo.vue";
+import DestinationWeddings from "@/Components/HomePageTabs/DestinationWeddings.vue";
+import WhyWeddingPal from "@/Components/HomePageTabs/WhyWeddingPal.vue";
+import AboutUs from "@/Components/HomePageTabs/AboutUs.vue";
+import Welcome from "@/Components/HomePageTabs/Welcome.vue";
+
+const currentComponent = ref(Welcome);
+
+const loadComponent = (component) => {
+    currentComponent.value = component;
+};
 
 defineProps({
     canLogin: {
@@ -26,8 +39,6 @@ function handleImageError() {
     document.getElementById('docs-card-content')?.classList.add('!flex-row');
     document.getElementById('background')?.classList.add('!hidden');
 }
-
-
 </script>
 
 <template>
@@ -35,7 +46,7 @@ function handleImageError() {
         <!-- Top header section -->
         <div class="flex justify-between items-center p-5 bg-gray-200">
             <!-- Logo -->
-            <div class="logo-box">
+            <div class="logo-box"><Link :href="'/'">
                 <svg class="logo-svg w-full h-full"
                      version="1.0"
                      viewBox="0 0 300.000000 214.000000"
@@ -86,8 +97,8 @@ function handleImageError() {
                             id="path14"/>
                     </g>
                 </svg>
+            </Link>
             </div>
-
             <!-- Buttons -->
             <div class="buttons flex flex-col space-y-4">
                 <button class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
@@ -98,72 +109,50 @@ function handleImageError() {
                         Log in
                     </Link>
                 </button>
-                <button class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
+                <button v-if="canRegister"
+                        class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
                     <Link
-                        v-if="canRegister"
-                        :href="route('register')"
+                        :href="'/register/client'"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
                         Register
                     </Link>
                 </button>
             </div>
-
-
         </div>
 
-        <div class="navigation-bar bg-gray-400 opacity-75 p-2 rounded-md">
+        <div class="navigation-bar bg-gray-400 p-4 rounded-md">
             <ul class="flex items-center justify-center space-x-4">
-                <li><a href="#"
+                <li><a @click.prevent="loadComponent(FindVendors)"
                        class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Find
                     Vendors</a></li>
-                <li><a href="#"
+                <li><a @click.prevent="loadComponent(WeddingInspo)"
                        class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Wedding
                     Inspiration</a></li>
-                <li><a href="#"
+                <li><a @click.prevent="loadComponent(DestinationWeddings)"
                        class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Destination
                     Weddings</a></li>
-                <li><a href="#"
+                <li><a @click.prevent="loadComponent(WhyWeddingPal)"
                        class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Why
                     WeddingPal?</a></li>
-                <li><a href="#"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Become
-                    a Vendor</a></li>
-                <li><a href="#"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Start
-                    Planning Your Wedding</a></li>
-                <li><a href="#"
+                <li><a @click.prevent="loadComponent(AboutUs)"
                        class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">About
                     Us</a></li>
+                <li><Link :href="'/register/vendor'"
+                    class="py-2 px-4 text-white bg-blue-500 hover:bg-blue-800 rounded-2xl transition duration-300">Become a Vendor
+                    Us</Link></li>
             </ul>
         </div>
-        <!-- Your content goes here -->
 
-        <div
-            class="flex flex-col h-screen"
-            style="background-image: url('/images/bgCover.jpg'); background-size: cover; background-position: center;"
-        >
-            <!--            This div-->
-
-            <div
-                class=" flex-grow  inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center">
-                <h1 class="text-5xl font-bold">WeddingPal</h1>
-                <p class="mt-4 text-2xl">Your Dream Wedding Starts Here</p>
-                <a href="#" class="mt-8 bg-white text-black px-4 py-2 text-lg rounded-full">
-                    Get Started
-                </a>
-            </div>
-
-
+        <!-- Dynamic component rendering -->
+        <div id="content">
+            <component :is="currentComponent"></component>
         </div>
-
     </div>
 </template>
 
 <script>
 export default {
     name: 'PageWithHeaderAndNavigation',
-
 }
-
 </script>
