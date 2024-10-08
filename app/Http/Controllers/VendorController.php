@@ -6,6 +6,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use App\Models\Category;
 
 class VendorController extends Controller
 {
@@ -24,7 +25,11 @@ class VendorController extends Controller
     public function create()
     {
 
-        return Inertia::render('Vendor/CreateStore'); // This can be omitted for an API controller
+        return Inertia::render('Vendor/CreateStore',[
+            //pass the names of categories to the view
+            'categories' => Category::all()->pluck('name'),
+
+        ]);
     }
 
     /**

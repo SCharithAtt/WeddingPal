@@ -103,14 +103,20 @@
 
             <div>
                 <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                <input
+                <select
                     v-model="form.category"
-                    type="text"
                     id="category"
                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
                     required
-                />
+                >
+                    <option value="" disabled>Select a category</option>
+                    <option v-for="(category, index) in categories" :key="index" :value="category">
+                        {{ category }}
+                    </option>
+                </select>
             </div>
+
+
 
             <div>
                 <label for="price_bracket" class="block text-sm font-medium text-gray-700">Price Bracket (1-3)</label>
@@ -121,9 +127,9 @@
                     required
                 >
                     <option value="" disabled>Select Price Bracket</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                    <option value="1">$</option>
+                    <option value="2">$$</option>
+                    <option value="3">$$$</option>
                 </select>
             </div>
 
@@ -253,9 +259,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
-import VendorLayout from "@/Layouts/VendorLayout.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 
 const form = ref({
     store_name: '',
@@ -285,6 +291,9 @@ const form = ref({
     account_name: '',
 });
 
+const props = defineProps(['categories']);
+
+
 const submitForm = () => {
     // Convert store_address and store_contact to JSON strings
     const submissionData = {
@@ -310,6 +319,6 @@ const submitForm = () => {
 };
 
 defineOptions({
-    layout: VendorLayout,
+    layout: AppLayout,
 });
 </script>

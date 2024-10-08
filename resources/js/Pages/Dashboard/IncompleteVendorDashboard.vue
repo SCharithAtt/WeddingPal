@@ -1,10 +1,10 @@
 <script setup>
-import GuestLayout from "@/Layouts/GuestLayout.vue";
 import SetupStoreBanner from "@/Components/SetupStoreBanner.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 
 defineOptions(
     {
-        layout: GuestLayout,
+        layout: AppLayout,
     }
 );
 </script>

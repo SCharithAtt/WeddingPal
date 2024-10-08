@@ -51,6 +51,28 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+
+
+                                <NavLink :href="route('vendor.my-store')" :active="route().current('vendor.my-store')">
+                                    My Store
+                                </NavLink>
+
+                                <NavLink :href="route('vendor.enquiries')" :active="route().current('vendors.enquiries')">
+                                    Customer Enquiries
+                                </NavLink>
+
+                                <NavLink :href="route('vendor.undertakings')" :active="route().current('vendor.undertakings')">
+                                    Undertakings
+                                </NavLink>
+
+                                <NavLink :href="route('vendor.calendar')" :active="route().current('vendor.calendar')">
+                                    Calendar
+                                </NavLink>
+
+                                <NavLink :href="route('vendor.communications')" :active="route().current('vendor.communications')">
+                                    Communications
+                                </NavLink>
+
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -193,6 +215,27 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('vendor.my-store')" :active="route().current('vendor.my-store')">
+                            My Store
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('vendor.enquiries')" :active="route().current('vendor.enquiries')">
+                            Customer Enquiries
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('vendor.undertakings')" :active="route().current('vendor.undertakings')">
+                            Undertakings
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('vendor.calendar')" :active="route().current('vendor.calendar')">
+                            Calendar
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('vendor.communications')" :active="route().current('vendor.communications')">
+                            Communications
+                        </ResponsiveNavLink>
+
                     </div>
 
                     <!-- Responsive Settings Options -->

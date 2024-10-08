@@ -51,6 +51,31 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink :href="route('client.wedding')" :active="route().current('client.wedding')">
+                                    My Wedding
+                                </NavLink>
+
+                                <NavLink :href="route('client.communications')" :active="route().current('client.communications')">
+                                    Communications
+                                </NavLink>
+
+                                <NavLink :href="route('client.contracts')" :active="route().current('client.contracts')">
+                                    Vendor Contracts
+                                </NavLink>
+
+                                <NavLink :href="route('client.disputes')" :active="route().current('client.disputes')">
+                                    Disputes
+                                </NavLink>
+
+                                <NavLink :href="route('client.checklist')" :active="route().current('client.checklist')">
+                                    Wedding Checklist
+                                </NavLink>
+
+                                <NavLink :href="route('client.market')" :active="route().current('client.market')">
+                                    Browse WeddingPal Marketplace!
+                                </NavLink>
+
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -193,6 +218,32 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.wedding')" :active="route().current('client.wedding')">
+                            My Wedding
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.communications')" :active="route().current('client.communications')">
+                            Communications
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.contracts')" :active="route().current('client.contracts')">
+                            Vendor Contracts
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.disputes')" :active="route().current('client.disputes')">
+                            Disputes
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.checklist')" :active="route().current('client.checklist')">
+                            Wedding Checklist
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('client.market')" :active="route().current('client.market')">
+                            Browse WeddingPal Marketplace!
+                        </ResponsiveNavLink>
+
+
                     </div>
 
                     <!-- Responsive Settings Options -->
