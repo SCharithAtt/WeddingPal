@@ -140,7 +140,7 @@ function handleImageError() {
                     Us</a></li>
                 <li><Link :href="'/register/vendor'"
                     class="py-2 px-4 text-white bg-blue-500 hover:bg-blue-800 rounded-2xl transition duration-300">Become a Vendor
-                    Us</Link></li>
+                </Link></li>
             </ul>
         </div>
 

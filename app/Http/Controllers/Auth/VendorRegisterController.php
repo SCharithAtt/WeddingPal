@@ -13,7 +13,16 @@ class VendorRegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return inertia('Auth/VendorRegister');
+
+        //if user already logged in, redirect to dashboard
+        if (auth()->check()) {
+            return Inertia::location(route('dashboard'));
+            //return redirect()->route('dashboard');
+        }else{
+            return inertia('Auth/VendorRegister');
+        }
+
+
     }
 
     public function register(Request $request)

@@ -13,6 +13,12 @@ class ClientRegisterController extends Controller
 {
     public function showRegistrationForm()
     {
+        // Check if the user is already authenticated
+        if (auth()->check()) {
+            return Inertia::location(route('dashboard'));
+            //return redirect()->route('dashboard'); // Adjust the route as needed
+        }
+
         return inertia('Auth/ClientRegister');
     }
 

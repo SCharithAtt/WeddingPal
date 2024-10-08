@@ -1,5 +1,7 @@
 <template>
     <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+
+
         <h1 class="text-2xl font-bold text-center mb-6">Client Registration</h1>
         <form @submit.prevent="submit" class="space-y-4">
             <input
@@ -50,8 +52,11 @@
 
 <script>
 import {useForm} from '@inertiajs/vue3';
+import AuthenticationCard from "@/Components/AuthenticationCard.vue";
+import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 
 export default {
+    components: {AuthenticationCardLogo, AuthenticationCard},
     setup() {
         const form = useForm({
             name: '',
