@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Vendor;
+use App\Models\Event;
 
 
 class VendorDashboardController extends Controller
@@ -39,7 +40,12 @@ class VendorDashboardController extends Controller
     //Calendar
     public function calendar()
     {
-        return Inertia::render('Vendor/Calendar');
+        $vendor_id = Vendor::where('user_id', auth()->id())->first()->id;
+        //all events where vendor_id = auth()->id()
+        $vendorsEvents = Event::where('vendor_id', $vendor_id)->get();
+        return Inertia::render('Vendor/Calendar',[
+            'events'=>$vendorsEvents,
+        ]);
     }
 
 }

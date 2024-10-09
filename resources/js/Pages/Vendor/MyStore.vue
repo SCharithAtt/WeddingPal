@@ -135,6 +135,7 @@
     </div>
 
     <VendorSummary :vendor="vendor" />
+    <FullVendor :vendor="vendor" />
 
 <!--    <FullVendor :vendor="vendor" />-->
 </template>

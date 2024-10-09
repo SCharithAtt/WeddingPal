@@ -15,6 +15,7 @@ class ExampleController extends Controller
         return Inertia::render('Example',[
             'user'=>auth()->user(),
             'vendor'=>Vendor::where('user_id',auth()->user()->id)->first(),
+            'categories'=>Category::all()->pluck('name'),
         ]);
     }
 }

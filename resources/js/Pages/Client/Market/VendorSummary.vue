@@ -1,25 +1,66 @@
 <template>
-    <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
-        <h3 class="text-lg font-semibold">{{ vendor.store_name }}</h3>
-        <p><strong>Category:</strong> {{ vendor.category }}</p>
-        <p><strong>Contact Person:</strong> {{ formattedContact }}</p>
-        <p><strong>Service Area:</strong> {{ serviceArea }}</p>
-        <p><strong>Price Bracket:</strong> {{ priceBracket }}</p>
-        <button @click="viewDetails" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">View Details</button>
+    <div class="bg-white shadow-lg rounded-lg p-4 flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/3">
+            <div class="relative">
+                <img
+                    :src="currentImage"
+                    @mouseover="hoverImage"
+                    @mouseleave="resetImage"
+                    class="w-full h-2/3 object-cover rounded-lg"
+                    alt="Vendor Image"
+                />
+            </div>
+        </div>
+        <div class="w-full md:w-2/3 md:pl-4 mt-4 md:mt-0">
+            <h3 class="text-lg font-semibold text-gray-800">{{ vendor.store_name }}</h3>
+            <p class="text-gray-600"><strong>Category:</strong> {{ vendor.category }}</p>
+            <p class="text-gray-600"><strong>Contact Person:</strong> {{ formattedContact }}</p>
+            <p class="text-gray-600"><strong>Service Area:</strong> {{ serviceArea }}</p>
+            <p class="text-gray-600"><strong>Price Bracket:</strong> {{ priceBracket }}</p>
+            <Link
+                :href="`/vendor/show/${vendor.id}`"
+                class="mt-4 bg-blue-500 text-white py-2 px-4 rounded transition hover:bg-blue-600"
+            >
+                View Details
+            </Link>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { defineProps, toRefs, computed } from 'vue';
+import { defineProps, toRefs, computed, ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     vendor: Object
 });
 
+const imageLinks = props.vendor.images;
+const getImageArray = (links) => {
+    const imageArray = [];
+
+    for (let i = 1; i <= 5; i++) {
+        const imageKey = `image${i}`;
+        if (links[imageKey]) {
+            imageArray.push(links[imageKey]);
+        }
+    }
+
+    return imageArray;
+};
+
+const brand_logo = imageLinks.logo;
+
+const images = getImageArray(imageLinks);
 const { vendor } = toRefs(props);
 
+// Placeholder Image URLs
+const image1 = ref(images[0] || 'https://via.placeholder.com/300x200.png?text=Image+1');
+const image2 = ref(images[1] || 'https://via.placeholder.com/300x200.png?text=Image+2');
+
+const currentImage = ref(image1.value); // Track current image
+
 const formattedContact = computed(() => {
-    //take vendor.store_contact and parse to JSON
     const contact = JSON.parse(vendor.value.store_contact);
     return `${contact.name} (${contact.number})` || 'N/A';
 });
@@ -52,9 +93,17 @@ const serviceArea = computed(() => {
     }
 });
 
-
-const viewDetails = () => {
-    // Emit event or trigger navigation to view the full vendor profile
-    console.log('View details for:', vendor.value);
+// Methods to handle image switching
+const hoverImage = () => {
+    currentImage.value = image2.value; // Switch to hover image
 };
+
+const resetImage = () => {
+    currentImage.value = image1.value; // Switch back to original image
+};
+
 </script>
+
+<style scoped>
+/* Add any additional styles here if needed */
+</style>
