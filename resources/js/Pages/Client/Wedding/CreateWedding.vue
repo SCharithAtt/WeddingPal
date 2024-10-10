@@ -64,7 +64,7 @@ const submit = () => {
     form.post('/wedding', {
         onSuccess: () => {
             // Handle success (e.g., redirect or show a success message)
-            console.log('Wedding created successfully!');
+            alert('Wedding created successfully!')
         },
         onError: (errors) => {
             // Assign error messages

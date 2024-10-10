@@ -11,12 +11,12 @@
                 />
             </div>
         </div>
-        <div class="w-full md:w-2/3 md:pl-4 mt-4 md:mt-0">
+        <div class="w-full md:w-2/3 md:pl-4 mt-4 md:mt-0 ">
             <h3 class="text-lg font-semibold text-gray-800">{{ vendor.store_name }}</h3>
-            <p class="text-gray-600"><strong>Category:</strong> {{ vendor.category }}</p>
-            <p class="text-gray-600"><strong>Contact Person:</strong> {{ formattedContact }}</p>
-            <p class="text-gray-600"><strong>Service Area:</strong> {{ serviceArea }}</p>
-            <p class="text-gray-600"><strong>Price Bracket:</strong> {{ priceBracket }}</p>
+            <p class="text-gray-600 my-3"><strong>Category:</strong> {{ vendor.category }}</p>
+            <p class="text-gray-600 my-3"><strong>Contact Person:</strong> {{ formattedContact }}</p>
+            <p class="text-gray-600 my-3"><strong>Service Area:</strong> {{ serviceArea }}</p>
+            <p class="text-gray-600 my-3"><strong>Price Bracket:</strong> {{ priceBracket }}</p>
             <Link
                 :href="`/vendor/show/${vendor.id}`"
                 class="mt-4 bg-blue-500 text-white py-2 px-4 rounded transition hover:bg-blue-600"

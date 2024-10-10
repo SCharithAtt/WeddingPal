@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Wedding</h1>
+        <h1>Test</h1>
         <Link v-if="!wedding" :href="route('weddings.create')">Create Wedding</Link>
         <div v-else>
             <h2>Details</h2>
@@ -11,6 +12,7 @@
             <Link :href="route('contracts.index')">View Contracts</Link>
         </div>
     </div>
+    {{ $page.props.wedding }}
 </template>
 
 <script>

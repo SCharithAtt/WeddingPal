@@ -39,24 +39,29 @@ class WeddingController extends Controller
         ]);
 
         $client = Client::where('user_id', auth()->id())->first();
+
+        // Ensure that client exists before proceeding
+        if (!$client) {
+            return redirect()->back()->withErrors(['client' => 'Client not found.']);
+        }
+
         Wedding::create([
-            'client_id' => $client,
+            'client_id' => $client->id, // Use the client ID here
             'date' => $request->date,
-            'location' => $request->location,
-            'details' => $request->details,
-            'bride' => $request->bride,
-            'groom' => $request->groom,
-            'time_from' => $request->time_from,
-            'time_to' => $request->time_to,
             'venue' => $request->venue,
             'number_of_guests' => $request->number_of_guests,
             'contact_person_name' => $request->contact_person_name,
             'contact_person_mobile' => $request->contact_person_mobile,
             'notes' => $request->notes,
+            'bride' => $request->bride,
+            'groom' => $request->groom,
+            'time_from' => $request->time_from,
+            'time_to' => $request->time_to,
         ]);
 
-        return Inertia::location(route('weddings.index'));
+        return Inertia::location('/dashboard/my-wedding');
     }
+
 
     public function show()
     {

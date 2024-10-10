@@ -12,12 +12,10 @@
 
         <ul class="mt-6">
             <template v-if="isCurrent">
-                <li class="border-b py-2">Current Undertaking 1: Project Alpha - Deadline: 2024-11-01</li>
-                <li class="border-b py-2">Current Undertaking 2: Project Beta - Deadline: 2024-12-15</li>
+                <li class="border-b py-2">Current Undertaking 1: Project Name - Deadline: xxxx-xx-xx</li>
             </template>
             <template v-else>
-                <li class="border-b py-2">Past Undertaking 1: Project X - Completed on 2024-09-30</li>
-                <li class="border-b py-2">Past Undertaking 2: Project Y - Completed on 2024-08-15</li>
+                <li class="border-b py-2">Past Undertaking 1: Project Name - Completed on xxxx-xx-xx</li>
             </template>
         </ul>
     </div>

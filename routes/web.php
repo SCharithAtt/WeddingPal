@@ -71,7 +71,7 @@ Route::middleware(['auth', RoleGuard::class . ':Client'])->group(function () {
     Route::get('/dashboard/wedding-checklist', [ClientDashboardController::class, 'weddingChecklist'])->name('client.checklist');
 });
 
-Route::get('vendor/show/{vendor}', [VendorController::class, 'show'])->name('vendor.show');
+Route::get('vendor/show/{vendor}', [VendorController::class, 'show'])->name('vendor.show')->middleware(['auth', RoleGuard::class . ':Client']);
 
 Route::middleware(['auth', RoleGuard::class . ':Vendor'])->group(function () {
     Route::get('/events', [EventController::class, 'index']);
@@ -81,14 +81,7 @@ Route::middleware(['auth', RoleGuard::class . ':Vendor'])->group(function () {
 
 Route::middleware(['auth', RoleGuard::class . ':Vendor'])->group(function () {
 
-    // Weddings
-    Route::get('vendor/weddings', [WeddingController::class, 'index'])->name('vendor.weddings.index');
-    Route::get('vendor/weddings/create', [WeddingController::class, 'create'])->name('vendor.weddings.create');
-    Route::post('vendor/weddings', [WeddingController::class, 'store'])->name('vendor.weddings.store');
-    Route::get('vendor/weddings/{id}', [WeddingController::class, 'show'])->name('vendor.weddings.show');
-    Route::get('vendor/weddings/{id}/edit', [WeddingController::class, 'edit'])->name('vendor.weddings.edit');
-    Route::put('vendor/weddings/{id}', [WeddingController::class, 'update'])->name('vendor.weddings.update');
-    Route::delete('vendor/weddings/{id}', [WeddingController::class, 'destroy'])->name('vendor.weddings.destroy');
+
 
     // Contracts
     Route::get('vendor/contracts', [ContractController::class, 'index'])->name('vendor.contracts.index');
@@ -111,5 +104,40 @@ Route::middleware(['auth', RoleGuard::class . ':Client'])->group(function () {
     ]);
 });
 
-
 Route::resource('contracts', ContractController::class);
+
+
+Route::get('/chat/{friend}', function (User $friend) {
+    return view('chat', [
+        'friend' => $friend
+    ]);
+})->middleware(['auth'])->name('chat');
+
+
+Route::get('/messages/{friend}', function (User $friend) {
+    return ChatMessage::query()
+        ->where(function ($query) use ($friend) {
+            $query->where('sender_id', auth()->id())
+                ->where('receiver_id', $friend->id);
+        })
+        ->orWhere(function ($query) use ($friend) {
+            $query->where('sender_id', $friend->id)
+                ->where('receiver_id', auth()->id());
+        })
+        ->with(['sender', 'receiver'])
+        ->orderBy('id', 'asc')
+        ->get();
+})->middleware(['auth']);
+
+
+Route::post('/messages/{friend}', function (User $friend) {
+    $message = ChatMessage::create([
+        'sender_id' => auth()->id(),
+        'receiver_id' => $friend->id,
+        'text' => request()->input('message')
+    ]);
+
+    broadcast(new MessageSent($message));
+
+    return $message;
+});

@@ -7,12 +7,18 @@ use Inertia\Inertia;
 use App\Models\Client;
 use App\Models\Category;
 use App\Models\Vendor;
+use App\Models\Wedding;
 
 class ClientDashboardController extends Controller
 {
+
     public function myWedding()
     {
-        return Inertia::render('Client/MyWedding');
+        $client_id = Client::where('user_id',auth()->user()->id)->first()->id;
+        return Inertia::render('Client/MyWedding',[
+            'user'=>auth()->user(),
+            'wedding'=>Wedding::where('client_id',$client_id)->first(),
+        ]);
     }
 
     public function communications()

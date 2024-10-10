@@ -17,24 +17,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="border-b">
-                <td class="px-4 py-2">John Doe</td>
-                <td class="px-4 py-2">How to track my order?</td>
-                <td class="px-4 py-2 text-green-600">Resolved</td>
-                <td class="px-4 py-2">2024-10-01</td>
-            </tr>
-            <tr class="border-b">
-                <td class="px-4 py-2">Jane Smith</td>
-                <td class="px-4 py-2">What is your return policy?</td>
-                <td class="px-4 py-2 text-yellow-600">Pending</td>
-                <td class="px-4 py-2">2024-10-05</td>
-            </tr>
-            <tr class="border-b">
-                <td class="px-4 py-2">Bob Johnson</td>
-                <td class="px-4 py-2">Do you offer bulk discounts?</td>
-                <td class="px-4 py-2 text-red-600">Unresolved</td>
-                <td class="px-4 py-2">2024-10-07</td>
-            </tr>
+
             </tbody>
         </table>
     </div>

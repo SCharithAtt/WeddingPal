@@ -1,143 +1,156 @@
 <template>
-    <div class="p-4 bg-white shadow rounded-lg">
-        <h2 class="text-xl font-semibold">Vendor Information</h2>
+    <div class="p-6 bg-gradient-to-r from-blue-50 to-blue-100 shadow-lg rounded-lg m-6">
+        <h2 class="text-2xl font-bold text-gray-800 text-center">Vendor Information</h2>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">General Information</h3>
-            <p><strong>Store Name:</strong> {{ vendor.store_name }}</p>
-            <p><strong>Store Email:</strong> {{ vendor.store_email }}</p>
-            <p><strong>Store Address:</strong> {{ formattedAddress }}</p>
-            <p><strong>Store Contact:</strong> {{ vendor.store_contact }}</p>
-            <p><strong>Category:</strong> {{ vendor.category }}</p>
-            <p><strong>Price Bracket:</strong> {{ vendor.price_bracket }}</p>
-            <p><strong>Service Area:</strong> {{ vendor.service_area }}</p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">General Information</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <p><strong>Store Name:</strong> <span class="text-gray-600">{{ vendor.store_name }}</span></p>
+                <p><strong>Store Email:</strong> <span class="text-gray-600">{{ vendor.store_email }}</span></p>
+                <p><strong>Store Address:</strong> <span class="text-gray-600">{{ formattedAddress }}</span></p>
+                <p><strong>Store Contact:</strong> <span class="text-gray-600">{{ vendor.store_contact }}</span></p>
+                <p><strong>Category:</strong> <span class="text-gray-600">{{ vendor.category }}</span></p>
+                <p><strong>Price Bracket:</strong> <span class="text-gray-600">{{ vendor.price_bracket }}</span></p>
+                <p><strong>Service Area:</strong> <span class="text-gray-600">{{ vendor.service_area }}</span></p>
+            </div>
         </div>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">Description</h3>
-            <p><strong>Bio:</strong> {{ vendor.bio }}</p>
-            <p><strong>Description:</strong> {{ vendor.description }}</p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">Description</h3>
+            <p><strong>Bio:</strong> <span class="text-gray-600">{{ vendor.bio }}</span></p>
+            <p><strong>Description:</strong> <span class="text-gray-600">{{ vendor.description }}</span></p>
         </div>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">Bank Details</h3>
-            <p><strong>Bank Account Number:</strong> {{ vendor.bank_account_number }}</p>
-            <p><strong>Bank Name:</strong> {{ vendor.bank_name }}</p>
-            <p><strong>Branch:</strong> {{ vendor.branch }}</p>
-            <p><strong>Account Name:</strong> {{ vendor.account_name }}</p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">Bank Details</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <p><strong>Bank Account Number:</strong> <span class="text-gray-600">{{ vendor.bank_account_number }}</span></p>
+                <p><strong>Bank Name:</strong> <span class="text-gray-600">{{ vendor.bank_name }}</span></p>
+                <p><strong>Branch:</strong> <span class="text-gray-600">{{ vendor.branch }}</span></p>
+                <p><strong>Account Name:</strong> <span class="text-gray-600">{{ vendor.account_name }}</span></p>
+            </div>
         </div>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">Operating Hours</h3>
-            <p v-if="vendor.open_hours">{{ vendor.open_hours }}</p>
-            <p v-else>No operating hours specified.</p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">Operating Hours</h3>
+            <p v-if="vendor.open_hours" class="text-gray-600">{{ vendor.open_hours }}</p>
+            <p v-else class="text-gray-600">No operating hours specified.</p>
         </div>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">Terms & Conditions</h3>
-            <p>{{ vendor.terms_conditions }}</p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">Terms & Conditions</h3>
+            <p class="text-gray-600">{{ vendor.terms_conditions }}</p>
         </div>
 
-        <div class="mt-4">
-            <h3 class="text-lg font-semibold">Online Presence</h3>
-            <p><strong>Website URL:</strong> <a :href="vendor.website_url" class="text-blue-600" target="_blank">{{ vendor.website_url }}</a></p>
-            <p><strong>Facebook Link:</strong> <a :href="vendor.facebook_link" class="text-blue-600" target="_blank">{{ vendor.facebook_link }}</a></p>
-            <p><strong>Instagram Link:</strong> <a :href="vendor.instagram_link" class="text-blue-600" target="_blank">{{ vendor.instagram_link }}</a></p>
+        <div class="mt-6 border-t border-gray-300 pt-4">
+            <h3 class="text-xl font-semibold text-gray-700">Online Presence</h3>
+            <div class="flex flex-col space-y-2">
+                <p><strong>Website URL:</strong> <a :href="vendor.website_url" class="text-blue-600 hover:underline" target="_blank">{{ vendor.website_url }}</a></p>
+                <p><strong>Facebook Link:</strong> <a :href="vendor.facebook_link" class="text-blue-600 hover:underline" target="_blank">{{ vendor.facebook_link }}</a></p>
+                <p><strong>Instagram Link:</strong> <a :href="vendor.instagram_link" class="text-blue-600 hover:underline" target="_blank">{{ vendor.instagram_link }}</a></p>
+            </div>
         </div>
 
-        <button @click="openEditModal" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Edit</button>
+        <button @click="openEditModal" class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Edit</button>
 
         <div v-if="isEditing" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" @click="closeModal">
-            <div class="bg-white rounded-lg shadow-lg p-4 w-3/4 max-w-2xl" @click.stop>
-                <button @click="closeModal" class="absolute top-2 right-2 text-gray-600">✖</button>
-                <h3 class="text-lg font-semibold">Edit Vendor Info</h3>
-                <form @submit.prevent="updateVendor" class="max-h-96 overflow-auto">
-                    <div>
-                        <label class="block">Store Name:</label>
-                        <input v-model="editedVendor.store_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+            <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-2/3 lg:w-1/2" @click.stop>
+                <button @click="closeModal" class="absolute top-3 right-3 text-gray-600 hover:text-gray-800 transition">✖</button>
+                <h3 class="text-xl font-semibold text-gray-800 text-center">Edit Vendor Info</h3>
+                <form @submit.prevent="updateVendor" class="mt-4">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label class="block text-gray-600">Store Name:</label>
+                            <input v-model="editedVendor.store_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Store Email:</label>
+                            <input v-model="editedVendor.store_email" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Store Address:</label>
+                            <input v-model="editedVendor.store_address" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Store Contact:</label>
+                            <input v-model="editedVendor.store_contact" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Category:</label>
+                            <input v-model="editedVendor.category" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Price Bracket:</label>
+                            <input v-model="editedVendor.price_bracket" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Service Area:</label>
+                            <input v-model="editedVendor.service_area" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Bio:</label>
+                            <textarea v-model="editedVendor.bio" class="mt-1 block w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Description:</label>
+                            <textarea v-model="editedVendor.description" class="mt-1 block w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Bank Account Number:</label>
+                            <input v-model="editedVendor.bank_account_number" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Bank Name:</label>
+                            <input v-model="editedVendor.bank_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Branch:</label>
+                            <input v-model="editedVendor.branch" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Account Name:</label>
+                            <input v-model="editedVendor.account_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Open Hours:</label>
+                            <input v-model="editedVendor.open_hours" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Terms & Conditions:</label>
+                            <textarea v-model="editedVendor.terms_conditions" class="mt-1 block w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Images (JSON format):</label>
+                            <textarea v-model="editedVendor.images" class="mt-1 block w-full border border-gray-300 rounded p-2" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Website URL:</label>
+                            <input v-model="editedVendor.website_url" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Facebook Link:</label>
+                            <input v-model="editedVendor.facebook_link" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-600">Instagram Link:</label>
+                            <input v-model="editedVendor.instagram_link" class="mt-1 block w-full border border-gray-300 rounded p-2" />
+                        </div>
                     </div>
-                    <div class="mt-4">
-                        <label class="block">Store Email:</label>
-                        <input v-model="editedVendor.store_email" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Store Address:</label>
-                        <input v-model="editedVendor.store_address" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Store Contact:</label>
-                        <input v-model="editedVendor.store_contact" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Category:</label>
-                        <input v-model="editedVendor.category" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Price Bracket:</label>
-                        <input v-model="editedVendor.price_bracket" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Service Area:</label>
-                        <input v-model="editedVendor.service_area" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Bio:</label>
-                        <textarea v-model="editedVendor.bio" class="mt-1 block w-full border border-gray-300 rounded p-2"></textarea>
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Description:</label>
-                        <textarea v-model="editedVendor.description" class="mt-1 block w-full border border-gray-300 rounded p-2"></textarea>
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Bank Account Number:</label>
-                        <input v-model="editedVendor.bank_account_number" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Bank Name:</label>
-                        <input v-model="editedVendor.bank_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Branch:</label>
-                        <input v-model="editedVendor.branch" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Account Name:</label>
-                        <input v-model="editedVendor.account_name" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Open Hours:</label>
-                        <input v-model="editedVendor.open_hours" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Terms & Conditions:</label>
-                        <textarea v-model="editedVendor.terms_conditions" class="mt-1 block w-full border border-gray-300 rounded p-2"></textarea>
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Images (JSON format):</label>
-                        <textarea v-model="editedVendor.images" class="mt-1 block w-full border border-gray-300 rounded p-2"></textarea>
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Website URL:</label>
-                        <input v-model="editedVendor.website_url" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Facebook Link:</label>
-                        <input v-model="editedVendor.facebook_link" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <div class="mt-4">
-                        <label class="block">Instagram Link:</label>
-                        <input v-model="editedVendor.instagram_link" class="mt-1 block w-full border border-gray-300 rounded p-2" />
-                    </div>
-                    <button type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">Save</button>
+                    <button type="submit" class="mt-6 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Save</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <VendorSummary :vendor="vendor" />
-    <FullVendor :vendor="vendor" />
+    <div class="mt-8 text-center">
+        <h1 class="text-2xl font-semibold text-gray-800">This is how your store is listed</h1>
+        <VendorSummary :vendor="vendor" />
+    </div>
 
-<!--    <FullVendor :vendor="vendor" />-->
+    <div class="mt-8 text-center">
+        <h1 class="text-2xl font-semibold text-gray-800">This is how your Store's full page looks</h1>
+        <FullVendor :vendor="vendor" />
+    </div>
 </template>
 
 <script setup>
@@ -179,3 +192,9 @@ defineOptions({
     layout: VendorLayout,
 });
 </script>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+}
+</style>

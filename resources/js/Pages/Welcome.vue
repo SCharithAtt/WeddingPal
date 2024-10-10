@@ -101,46 +101,34 @@ function handleImageError() {
             </div>
             <!-- Buttons -->
             <div class="buttons flex flex-col space-y-4">
-                <button class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
+                <button class="ml-4 bg-white text-gray-800 py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-lg">
                     <Link
                         :href="route('login')"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        class="text-gray-800 font-semibold transition duration-300 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     >
                         Log in
                     </Link>
                 </button>
-                <button v-if="canRegister"
-                        class="ml-4 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700">
+                <button v-if="canRegister" class="ml-4 bg-white text-gray-800 py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-lg">
                     <Link
                         :href="'/register/client'"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        class="text-gray-800 font-semibold transition duration-300 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     >
                         Register
                     </Link>
                 </button>
+
             </div>
         </div>
 
-        <div class="navigation-bar bg-gray-400 p-4 rounded-md">
-            <ul class="flex items-center justify-center space-x-4">
-                <li><a @click.prevent="loadComponent(FindVendors)"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Find
-                    Vendors</a></li>
-                <li><a @click.prevent="loadComponent(WeddingInspo)"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Wedding
-                    Inspiration</a></li>
-                <li><a @click.prevent="loadComponent(DestinationWeddings)"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Destination
-                    Weddings</a></li>
-                <li><a @click.prevent="loadComponent(WhyWeddingPal)"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Why
-                    WeddingPal?</a></li>
-                <li><a @click.prevent="loadComponent(AboutUs)"
-                       class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">About
-                    Us</a></li>
-                <li><Link :href="'/register/vendor'"
-                    class="py-2 px-4 text-white bg-blue-500 hover:bg-blue-800 rounded-2xl transition duration-300">Become a Vendor
-                </Link></li>
+        <div class="navigation-bar bg-gray-300 p-4 rounded-md shadow-md">
+            <ul class="flex items-center justify-center space-x-6">
+                <li><a @click.prevent="loadComponent(FindVendors)" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Find Vendors</a></li>
+                <li><a @click.prevent="loadComponent(WeddingInspo)" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Wedding Inspiration</a></li>
+                <li><a @click.prevent="loadComponent(DestinationWeddings)" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Destination Weddings</a></li>
+                <li><a @click.prevent="loadComponent(WhyWeddingPal)" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">Why WeddingPal?</a></li>
+                <li><a @click.prevent="loadComponent(AboutUs)" class="py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded-md transition duration-300">About Us</a></li>
+                <li><Link :href="'/register/vendor'" class="py-2 px-4 text-white bg-blue-600 hover:bg-blue-800 rounded-2xl transition duration-300 shadow">Become a Vendor</Link></li>
             </ul>
         </div>
 
