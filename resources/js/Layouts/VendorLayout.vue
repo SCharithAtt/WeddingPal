@@ -61,10 +61,10 @@ const logout = () => {
                                 <NavLink :href="route('vendor.calendar')" :active="route().current('vendor.calendar')">
                                     Calendar
                                 </NavLink>
-<!--                                <NavLink :href="route('vendor.communications')"-->
-<!--                                         :active="route().current('vendor.communications')">-->
-<!--                                    Communications-->
-<!--                                </NavLink>-->
+                                <NavLink :href="route('vendor.communications')"
+                                         :active="route().current('vendor.communications')">
+                                    Communications
+                                </NavLink>
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center space-x-6">
@@ -187,9 +187,9 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('vendor.calendar')"
                                            :active="route().current('vendor.calendar')">Calendar
                         </ResponsiveNavLink>
-<!--                        <ResponsiveNavLink :href="route('vendor.communications')"-->
-<!--                                           :active="route().current('vendor.communications')">Communications-->
-<!--                        </ResponsiveNavLink>-->
+                        <ResponsiveNavLink :href="route('vendor.communications')"
+                                           :active="route().current('vendor.communications')">Communications
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->

@@ -37,7 +37,7 @@ defineOptions({
 .dashboard-container {
     padding: 2rem;
     background-color: #f9fafb;
-    border-radius: 8px;
+    border-radius: 1px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -49,7 +49,7 @@ defineOptions({
 }
 
 .tile {
-    background-color: #ffffff;
+    background-color: rgb(0,0,0,0.7);
     border-radius: 8px;
     padding: 1.5rem;
     text-align: center;
@@ -64,7 +64,7 @@ defineOptions({
 
 .tile-link {
     text-decoration: none;
-    color: #3b82f6; /* Tailwind's blue-500 */
+    color: #ffffff; /* Tailwind's blue-500 */
     font-weight: 600;
     transition: color 0.3s;
 }

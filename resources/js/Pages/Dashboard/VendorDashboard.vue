@@ -8,82 +8,303 @@ defineOptions({
     layout: VendorLayout,
 });
 
-// Initialize reactive variables
-const totalClientRequests = ref(0);
-const currentUndertakings = ref(0);
-const storeViews = ref(0);
+// Reactive Variables for Analytics Data
+const totalClientRequests = ref(320); // Example data
+const currentUndertakings = ref(8);  // Example data
+const storeViews = ref(1245);        // Example data
+const selectedAnalytics = ref('totalClientRequests'); // Default selected analytics
+const selectedPeriod = ref('Month'); // Default period selection (monthly)
+const showCursiveNotification = ref(true);
+
+// Tabs for Analytics
+const tabs = [
+    { label: 'Total Client Requests', value: 'totalClientRequests' },
+    { label: 'Current Undertakings', value: 'currentUndertakings' },
+    { label: 'Store Views', value: 'storeViews' }
+];
+
+// Period Options
+const periodOptions = [
+    { label: 'Daily', value: 'Day' },
+    { label: 'Monthly', value: 'Month' },
+    { label: 'Yearly', value: 'Year' },
+    { label: 'Custom Period', value: 'Time Period' }
+];
+
+// Function to handle tab switching
+const selectTab = (tabValue) => {
+    selectedAnalytics.value = tabValue;
+};
+
+// Function to handle period selection change
+const selectPeriod = (periodValue) => {
+    selectedPeriod.value = periodValue;
+};
 </script>
 
 <template>
     <div class="dashboard-container">
-        <CursiveWriting
-            header="Welcome to Your Dashboard"
-            text="Here you can easily manage your store, view your current undertakings, and communicate with clients."
+        <!-- Centered Header and Subheading -->
+        <div class="header-container flex items-center space-x-4">
+            <div class="w-12 h-12 overflow-hidden rounded-full">
+                <img src="https://static.vecteezy.com/system/resources/previews/023/654/784/non_2x/golden-logo-template-free-png.png" alt="Vendor Logo" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h1 class="page-header text-2xl font-semibold">{{ $page.props.vendor.store_name }}</h1>
+<!--                <h4 class="page-subheader text-sm text-gray-600">Vendor Dashboard</h4>-->
+            </div>
+            <h4 class="page-subheader text-sm text-gray-600">Vendor Dashboard</h4>
+        </div>
+
+        <!-- Cursive Writing Banner (Closable) -->
+        <CursiveWriting v-if="showCursiveNotification" class="notification-banner"
+                        header="Welcome to Your Dashboard"
+                        text="Manage your store, track your analytics, and engage with clients all in one place."
         />
-    </div>
-    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-8">
-        <h1 class="text-3xl font-bold mb-6 text-center">Analytics This Month</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="analytics-card bg-blue-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-                <h3 class="text-lg font-semibold">Total Client Requests</h3>
-                <p class="text-3xl font-bold">{{ totalClientRequests }}</p>
+
+        <!-- Period Selection -->
+        <div class="period-selection">
+            <div class="period-label">Select Period:</div>
+            <div class="period-options">
+                <div
+                    v-for="option in periodOptions"
+                    :key="option.value"
+                    :class="['period-option', { active: selectedPeriod === option.value }]"
+                    @click="selectPeriod(option.value)"
+                >
+                    {{ option.label }}
+                </div>
             </div>
-            <div class="analytics-card bg-yellow-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-                <h3 class="text-lg font-semibold">Current Undertakings</h3>
-                <p class="text-3xl font-bold">{{ currentUndertakings }}</p>
+
+            <!-- Custom Period Date Picker (Visible only for 'Custom' option) -->
+            <div v-if="selectedPeriod === 'Time Period'" class="custom-period-picker">
+                <input type="date" class="custom-date-picker" placeholder="Start Date" />
+                <span class="to-date">to</span>
+                <input type="date" class="custom-date-picker" placeholder="End Date" />
             </div>
-            <div class="analytics-card bg-green-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-                <h3 class="text-lg font-semibold">Store Views</h3>
-                <p class="text-3xl font-bold">{{ storeViews }}</p>
+        </div>
+
+        <!-- Analytics Section with Tab Switching -->
+        <h2 class="section-header">This {{ selectedPeriod.charAt(0).toUpperCase() + selectedPeriod.slice(1) }} Analytics</h2>
+        <div class="tabs">
+            <div
+                v-for="tab in tabs"
+                :key="tab.value"
+                :class="['tab', { active: selectedAnalytics === tab.value }]"
+                @click="selectTab(tab.value)"
+            >
+                {{ tab.label }}
             </div>
+        </div>
+
+        <!-- Analytics Cards Display Based on Selected Tab -->
+        <div v-if="selectedAnalytics === 'totalClientRequests'" class="analytics-card">
+            <h3 class="card-title">Total Client Requests</h3>
+            <p class="card-content">{{ totalClientRequests }}</p>
+        </div>
+
+        <div v-if="selectedAnalytics === 'currentUndertakings'" class="analytics-card">
+            <h3 class="card-title">Current Undertakings</h3>
+            <p class="card-content">{{ currentUndertakings }}</p>
+        </div>
+
+        <div v-if="selectedAnalytics === 'storeViews'" class="analytics-card">
+            <h3 class="card-title">Store Views</h3>
+            <p class="card-content">{{ storeViews }}</p>
         </div>
     </div>
 </template>
 
 <style scoped>
+/* General Page Layout */
 .dashboard-container {
-    background-color: #f9fafb; /* Light background for a soft look */
-    padding: 2rem; /* Generous padding for a spacious feel */
-    border-radius: 12px; /* Rounded corners for elegance */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    max-width: 800px; /* Limit width for better readability */
-    margin: 2rem auto; /* Centering the container */
+    padding: 2rem;
+    background-color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 2.5rem; /* Large font size for the header */
-    font-weight: 700; /* Bold weight for emphasis */
-    color: #1f2937; /* Dark color for contrast */
-    margin-bottom: 1rem; /* Space below the header */
+/* Header Styling */
+.header-container {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.analytics-card {
-    transition: transform 0.2s;
+.page-header {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
 }
 
-.analytics-card:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
+.page-subheader {
+    font-size: 1.25rem;
+    color: #555;
 }
 
-p {
-    font-size: 1.125rem; /* Slightly larger font for the paragraph */
-    color: #4b5563; /* Grayish color for softer readability */
-    line-height: 1.6; /* Better line height for readability */
+/* Cursive Writing Notification Banner */
+.notification-banner {
+    background-color: #f9f9f9;
+    border-left: 4px solid #333;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
 }
 
-.cursive-writing {
-    text-align: center; /* Centering the text for a balanced layout */
+.notification-banner .cursive-writing {
+    font-size: 1.25rem;
+    color: #333;
 }
 
-.cursive-writing h1 {
-    font-family: 'Cursive', sans-serif; /* Cursive font for header */
-    margin-bottom: 0.5rem; /* Spacing between header and text */
-    color: #4a5568; /* Soft dark color for the header */
+.notification-banner button {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
 }
 
-.cursive-writing p {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    color: #4b5563; /* Soft gray color */
+.notification-banner button:hover {
+    color: #888;
 }
+
+/* Period Selection */
+.period-selection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 3px;
+    background: rgb(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.period-label {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.period-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.period-option {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.period-option:hover {
+    background-color: #f1f1f1;
+}
+
+.period-option.active {
+    background-color: #333;
+    color: white;
+}
+
+.custom-period-picker {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-date-picker {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.to-date {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Analytics Section */
+.analytics-section {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Tabs (Interactive) */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.tab {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 8px;
+    margin: 0 0.5rem;
+}
+
+.tab:hover {
+    background-color: #f1f1f1;
+}
+
+.tab.active {
+    background-color: #333;
+    color: white;}
+
+    /* Analytics Cards */
+    .analytics-card {
+        padding: 2rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .analytics-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .card-content {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
 </style>

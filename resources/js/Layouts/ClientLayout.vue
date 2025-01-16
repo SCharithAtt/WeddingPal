@@ -47,8 +47,8 @@ const logout = () => {
                                 <NavLink :href="route('client.wedding')" :active="route().current('client.wedding')">My Wedding</NavLink>
                                 <NavLink :href="route('client.communications')" :active="route().current('client.communications')">Communications</NavLink>
                                 <NavLink :href="route('client.contracts')" :active="route().current('client.contracts')">Vendor Contracts</NavLink>
-                                <NavLink :href="route('client.disputes')" :active="route().current('client.disputes')">Disputes</NavLink>
-                                <NavLink :href="route('client.checklist')" :active="route().current('client.checklist')">Wedding Checklist</NavLink>
+<!--                                <NavLink :href="route('client.disputes')" :active="route().current('client.disputes')">Disputes</NavLink>-->
+<!--                                <NavLink :href="route('client.checklist')" :active="route().current('client.checklist')">Wedding Checklist</NavLink>-->
                                 <NavLink :href="route('client.market')" :active="route().current('client.market')">Browse Marketplace</NavLink>
                             </div>
                         </div>

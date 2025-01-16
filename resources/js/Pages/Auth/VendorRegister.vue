@@ -1,67 +1,91 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <h1 class="mb-6 text-3xl font-bold text-gray-800">Vendor Registration</h1>
-        <form @submit.prevent="submit" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-            <div class="mb-4">
+    <!-- Background Image -->
+    <img src="https://elements-resized.envatousercontent.com/envato-shoebox/9b72/12d8-17f9-4111-9b38-f7534ddece4e/rm218batch2-aum-05.jpg?w=1600&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=dee65198d1545953d120b743934738a606b616dbc6e24f651ba2f4f83aea4c17" alt="Background" class="fixed top-0 left-0 w-full h-full rounded-lg opacity-50 bg-cover" />
+
+    <div class="relative max-w-md mx-auto mt-10 p-6 bg-gradient-to-r from-white via-gray-50 to-gray-100 rounded-lg shadow-lg">
+        <AuthenticationCardLogo/>
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Vendor Registration</h1>
+
+        <!-- Form Section -->
+        <form @submit.prevent="submit" class="space-y-6 relative">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Username</label>
                 <input
                     v-model="form.name"
                     type="text"
-                    placeholder="Username"
+                    id="name"
+                    placeholder="Enter your username"
                     required
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
             </div>
-            <div class="mb-4">
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input
                     v-model="form.email"
                     type="email"
-                    placeholder="Email"
+                    id="email"
+                    placeholder="Enter your email"
                     required
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
             </div>
-            <div class="mb-4">
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input
                     v-model="form.password"
                     type="password"
-                    placeholder="Password"
+                    id="password"
+                    placeholder="Enter your password"
                     required
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
             </div>
-            <div class="mb-4">
+
+            <div>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                 <input
                     v-model="form.password_confirmation"
                     type="password"
-                    placeholder="Confirm Password"
+                    id="password_confirmation"
+                    placeholder="Confirm your password"
                     required
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
             </div>
+
+            <!-- Submit Button -->
             <button
                 type="submit"
-                class="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none"
+                class="w-full py-3 bg-gray-700 text-white rounded-md hover:bg-blue-600 transition duration-200"
             >
                 Register
             </button>
         </form>
-        <div v-if="form.errors" class="mt-4 text-red-600">
-            <p v-for="(error, field) in form.errors" :key="field">{{ error }}</p>
+
+        <!-- Error Messages Section -->
+        <div v-if="form.errors" class="mt-6 space-y-3">
+            <p v-for="(error, field) in form.errors" :key="field" class="text-red-600 text-sm">
+                {{ error }}
+            </p>
         </div>
     </div>
 </template>
 
 <script>
 import { useForm } from '@inertiajs/vue3';
+import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 
 export default {
+    components: {AuthenticationCardLogo},
     setup() {
         const form = useForm({
             name: '',
             email: '',
             password: '',
             password_confirmation: '',
-            company_name: '',
         });
 
         function submit() {
@@ -78,5 +102,28 @@ export default {
 </script>
 
 <style scoped>
-/* Any additional custom styles can go here */
+/* Ensure smooth transitions on inputs and button */
+input, button {
+    transition: all 0.3s ease;
+}
+
+/* Apply a slight lift effect on focus/hover */
+input:focus, button:hover {
+    outline: none;
+    transform: translateY(-2px);
+}
+
+/* Adjust for consistent spacing and ensure no overlap */
+input {
+    margin-top: 0.5rem;
+}
+
+button {
+    margin-top: 1.5rem;
+}
+
+/* Additional spacing to ensure error messages do not overlap */
+div.mt-6 {
+    margin-top: 2rem;
+}
 </style>
